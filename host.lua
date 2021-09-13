@@ -43,6 +43,11 @@ local CBar, CRemote, Connected = game:GetService("Players").LocalPlayer['PlayerG
 
 local prefix = "/"
 
+function evalAllBots(code)
+    websock:Send("rblxBot|Command|eval|"..code)
+end
+_G.evalAllBots = evalAllBots
+
 local HookChat = function(Bar)
     coroutine.wrap(function()
         if not table.find(Connected,Bar) then
@@ -118,6 +123,15 @@ local HookChat = function(Bar)
                                 local toExec = string.gsub(Message, "/iy ", "")
                                 websock:Send("rblxBot|Command|iy|"..toExec)
                                     
+                            elseif cmd == "soccerball" then
+
+                                evalAllBots([[
+                                
+                                        game:GetService("Workspace").Gravity = -50
+                                        game:GetService("Players").LocalPlayer.Character.Humanoid.Sit = true
+                                        
+                                ]])
+                                  
                             end
 
                     else
@@ -128,10 +142,6 @@ local HookChat = function(Bar)
             Connected[#Connected+1] = Bar; Bar['AncestryChanged']:Wait(); Connect:Disconnect()
         end
     end)()
-end
-
-_G.evalAllBots = function(code)
-    websock:Send("rblxBot|Command|eval|"..code)
 end
 
 HookChat(CBar); local BindHook = Instance.new('BindableEvent')
