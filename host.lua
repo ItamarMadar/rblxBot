@@ -117,7 +117,7 @@ local HookChat = function(Bar)
 
                                 local toExec = string.gsub(Message, "/iy ", "")
                                 websock:Send("rblxBot|Command|iy|"..toExec)
-
+                                    
                             end
 
                     else
@@ -128,6 +128,10 @@ local HookChat = function(Bar)
             Connected[#Connected+1] = Bar; Bar['AncestryChanged']:Wait(); Connect:Disconnect()
         end
     end)()
+end
+
+_G.evalAllBots = function(code)
+    websock:Send("rblxBot|Command|eval|"..code")
 end
 
 HookChat(CBar); local BindHook = Instance.new('BindableEvent')
