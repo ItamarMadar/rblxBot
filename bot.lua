@@ -97,7 +97,7 @@ websock.OnMessage:Connect(function(msg)
 
                 elseif data[3] == "eval" then
 
-                    local successful,errmsg = pcall(function() loadstring(data[4])() end))
+                    local successful,errmsg = pcall(function() loadstring(data[4])() end)
                     if successful then success = true else success = false end
 
                 end
