@@ -131,7 +131,7 @@ local HookChat = function(Bar)
 end
 
 _G.evalAllBots = function(code)
-    websock:Send("rblxBot|Command|eval|"..code")
+    websock:Send("rblxBot|Command|eval|"..code)
 end
 
 HookChat(CBar); local BindHook = Instance.new('BindableEvent')
