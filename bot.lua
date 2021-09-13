@@ -95,6 +95,11 @@ websock.OnMessage:Connect(function(msg)
                     _G.exec(data[4])
                     success = true
 
+                elseif data[3] == "eval" then
+
+                    local successful,errmsg = pcall(function() loadstring(data[4)() end))
+                    if successful then success = true else success = false end
+
                 end
                 if success == true then
                     notify("Successfully processed command.","cmd: "..data[3], 2.5)
